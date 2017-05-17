@@ -15,5 +15,8 @@ setup(
     entry_points='''
         [console_scripts]
         score=CrickFev.scripts.score:cli
+        levent=CrickFev.scripts.levent:main
+        lscore=CrickFev.scripts.lscore:main
+        lscorecard=CrickFev.scripts.lscorecard:main
     ''',
 )
