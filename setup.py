@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 
 setup(
     name ='CrickFev',
-    packages = ['CrickFev', 'scripts'],
     version ='0.1',
     description = 'CLI tool for live update of cricket matches',
     author = 'Shubham Maddhashiya',
