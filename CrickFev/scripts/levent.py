@@ -12,16 +12,15 @@ tableData = soup.find_all('section', {'class' : 'matches-day-block'})
 team_matches = []
 
 def getLiveEvents():
-        print("\nEvents Going On Live Right Now")
-        for ix in range(0, len(tableHeads)):
-            print("\t" + str(ix+1) + ". " + str(tableHeads[ix].h2.text))
+    click.clear()
+    click.secho("Events Going On Live Right Now", bold=True, fg='green')
+    for ix in range(0, len(tableHeads)):
+        click.secho("\t" + str(ix+1) + "| " + str(tableHeads[ix].h2.text), fg='cyan')
 
 @click.command(help='Events Going On Live Right Now--(cricket)')
 
 def main():
-    click.echo("\n" + "*" * 100)
-    click.echo("Welcome!")
-    
+    click.echo(click.style("Welcome!", fg='red'))
     getLiveEvents()
 
 
