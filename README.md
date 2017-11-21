@@ -3,6 +3,8 @@
 
 > A command line tool to see cricket updates.   
 
+![demo](https://user-images.githubusercontent.com/23627932/33074597-bbee674e-ceec-11e7-9a65-eeb610668d71.gif)  
+
 
 Why?
 ----
