@@ -10,7 +10,6 @@ tableHeads = soup.find_all('div', {'class' : 'match-section-head'})
 tableData = soup.find_all('section', {'class' : 'matches-day-block'})
 
 
-
 def getScoreCard(url,meta):
     print("\n" + "*"*100)
     
@@ -30,8 +29,6 @@ def getScoreCard(url,meta):
         tds = rows.find_all("td")
         bowler_data.append(tds)
 
-
-    
     if len((batsman_data[0])[0])<25:
     		(batsman_data[0])[0] +=" "*(25-len((batsman_data[0])[0]))
     (batsman_data[0])[1] +=" "*(4-len((batsman_data[0])[1]))
@@ -40,11 +37,8 @@ def getScoreCard(url,meta):
     (batsman_data[0])[4] +=" "*(4-len((batsman_data[0])[4]))
     (batsman_data[0])[5] +=" "*(4-len((batsman_data[0])[5]))
 
-    
-
     print((batsman_data[0])[0]+"\t"+(batsman_data[0])[1]+"\t"+(batsman_data[0])[2]+"\t"+(batsman_data[0])[3]+"\t"+(batsman_data[0])[4]+"\t"+(batsman_data[0])[5])
 
-    
 #Print the Values of the Batsmen Playing
     for j in range(1,3):
         playerName = (batsman_data[j])[0].a.string
@@ -72,7 +66,6 @@ def getScoreCard(url,meta):
 
     print("\n"+"*"*70)
 
-    
     if len((bowler_data[0])[0])<25:
     		(bowler_data[0])[0] +=" "*(25-len((bowler_data[0])[0]))
     (bowler_data[0])[1] +=" "*(4-len((bowler_data[0])[1]))
@@ -82,7 +75,6 @@ def getScoreCard(url,meta):
     (bowler_data[0])[5] +=" "*(4-len((bowler_data[0])[5]))
 
     print((bowler_data[0])[0]+"\t"+(bowler_data[0])[1]+"\t"+(bowler_data[0])[2]+"\t"+(bowler_data[0])[3]+"\t"+(bowler_data[0])[4]+"\t"+(bowler_data[0])[5])
-
 
 #Print the values of Bowlers data
     for j in range(1,3):
@@ -103,13 +95,7 @@ def getScoreCard(url,meta):
         eco +=" "*(4-len(eco))
 
         print(name +"\t"+over+"\t"+maid+"\t"+runs+"\t"+wkt+"\t"+eco)
-        
-
-        
-
-
-
-
+       
 @click.command()
 @click.option('--em', nargs=2, type=int, help='first arg for event number and second for match')
 
