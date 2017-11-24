@@ -9,123 +9,103 @@ soup = BS(r.text, "html.parser")
 tableHeads = soup.find_all('div', {'class' : 'match-section-head'})
 tableData = soup.find_all('section', {'class' : 'matches-day-block'})
 
-def getBowlingTables(text):
-    text = text.split('\n')
-    all_bowlers = []
-
-    for line_number in range(0, len(text)):
-        if '<table width="100%" class="bowling-table">' in text[line_number]:
-            newTable = []
-            while '</table>' not in text[line_number]:
-                line_number += 1
-                if '<td class="bowler-name">' in text[line_number]:
-                    newBowler = []
-                    newBowler.append(text[line_number].split('>')[-3].split('<')[0])		#playerName
-                    for ix in range(1, 6):
-                        newBowler.append(text[line_number+ix].split('<td>')[1].split('</td>')[0])
-                    newTable.append(newBowler)
-            all_bowlers.append(newTable)
-
-    return all_bowlers
 
 
-def getScoreCard(url, meta):
+def getScoreCard(url,meta):
+    print("\n" + "*"*100)
+    
+    r1 = requests.get(url)
+    soup = BS(r1.text,'html.parser')
 
-        print("\n" + "*"*100)
+    details = soup.find_all("tbody")
+    
+    batsman_data = [["Batsman","Runs","Balls","Fours","Six","S/R"]]
+    bowler_data = [["Bowler","Over","Maiden","Runs","Wkts","Economy"]]
 
-        r=requests.get(url)
-        soup=BS(r.text, "html.parser")
+    for rows in details[0]:
+        tds = rows.find_all("td")
+        batsman_data.append(tds)
 
-        summary = soup.find('div', {'class' : 'match-information-strip'}).text.split(',')
-        summary[-2] = summary[-2] + ',' + summary[-1]
+    for rows in details[1]:
+        tds = rows.find_all("td")
+        bowler_data.append(tds)
 
-        for ix in range(0, len(summary)-1):
-            summary[ix] = summary[ix].strip()
-            print summary[ix]
-        print('\n' + meta)
 
-        inningsBat = soup.find_all('table', {'class':'batting-table innings'})
-        inningsBowl = getBowlingTables(r.text)
+    
+    if len((batsman_data[0])[0])<25:
+    		(batsman_data[0])[0] +=" "*(25-len((batsman_data[0])[0]))
+    (batsman_data[0])[1] +=" "*(4-len((batsman_data[0])[1]))
+    (batsman_data[0])[2] +=" "*(5-len((batsman_data[0])[2]))
+    (batsman_data[0])[3] +=" "*(4-len((batsman_data[0])[3]))
+    (batsman_data[0])[4] +=" "*(4-len((batsman_data[0])[4]))
+    (batsman_data[0])[5] +=" "*(4-len((batsman_data[0])[5]))
 
-        for ix in range(0, len(inningsBat)):
-            print("\n" + "-" * 100)
+    
 
-            rows = inningsBat[ix].find_all('tr')
+    print((batsman_data[0])[0]+"\t"+(batsman_data[0])[1]+"\t"+(batsman_data[0])[2]+"\t"+(batsman_data[0])[3]+"\t"+(batsman_data[0])[4]+"\t"+(batsman_data[0])[5])
 
-            try:
-                playerData = rows[len(rows) - 2].find_all('td')
-                playerName = playerData[1].text
-            except:
-                continue
+    
+#Print the Values of the Batsmen Playing
+    for j in range(1,3):
+        playerName = (batsman_data[j])[0].a.string
+        playerScore = (batsman_data[j])[1].string
+        ballsFaced = (batsman_data[j])[2].string
+        fours = (batsman_data[j])[3].string
+        six = (batsman_data[j])[4].string
+        sr = (batsman_data[j])[5].string
 
-            inningHead = rows[0].find_all('th')[1].text.split('innings', 1)[0] + 'Innings'
-            if len(inningHead) < 60:
-                inningHead += " " * (60 - len(inningHead))
-            print("\n" + inningHead + "\t" + "Runs" + "\t"+ "Balls" + "\t" + "Strike Rate" + "\n")
+        if len(playerName)<25:
+            playerName +=" "*(25-len(playerName))
 
-            for px in range(1, len(rows)-2, 2):
-                playerData = rows[px].find_all('td')
-                playerName = playerData[1].text
-                if len(playerName)<25:
-                    playerName += " " * (25 - len(playerName))
-                dismissalMode = playerData[2].text
-                if len(dismissalMode) < 35:
-                    dismissalMode += " " * (35 - len(dismissalMode))
-                runs = playerData[3].text
-                if len(runs) < 4:
-                    runs += " " * (4 - len(runs))
-                balls = playerData[len(playerData) - 4].text
-                if len(balls) < 5:
-                    balls += " " * (5 - len(balls))
-                print(playerName + dismissalMode + "\t" + runs + "\t" + balls + "\t" + playerData[len(playerData)-1].text)
+        if len(playerScore)<4:
+            playerScore +=" "*(4-len(playerScore))
+        if len(ballsFaced)<5:
+            ballsFaced +=" "*(5-len(ballsFaced))
+        if len(fours)<4:
+            fours +=" "*(4-len(fours))
+        if len(six)<4:
+            six +=" "*(4-len(six))
+        if len(sr)<4:
+            sr +=" "*(4-len(sr))
 
-            playerData = rows[len(rows) - 2].find_all('td')
-            playerName = playerData[1].text
-            playerName += " "*(25 - len(playerName))
-            dismissalMode = playerData[2].text
-            if len(dismissalMode) < 35:
-                dismissalMode += " "*(35 - len(dismissalMode))
-            runs = playerData[3].text
-            if len(runs)<4:
-                runs += " "*(4-len(runs))
-            print("\n" + playerName + dismissalMode + "\t" + runs)
+        print(playerName + "\t"+playerScore+"\t"+ballsFaced+"\t"+fours+"\t"+six+"\t"+sr)
 
-            playerData = rows[len(rows) - 1].find_all('td')
-            playerName = playerData[1].text
-            playerName += " "*(25 - len(playerName))
-            dismissalMode = playerData[2].text
-            if len(dismissalMode) < 35:
-                dismissalMode += " "*(35 - len(dismissalMode))
-            runs = playerData[3].text
-            if len(runs) < 4:
-                runs += " " * (4 - len(runs))
-            print(playerName + dismissalMode + "\t" + runs + "\t" + playerData[4].text)
+    print("\n"+"*"*70)
 
-            print "_" * 20
+    
+    if len((bowler_data[0])[0])<25:
+    		(bowler_data[0])[0] +=" "*(25-len((bowler_data[0])[0]))
+    (bowler_data[0])[1] +=" "*(4-len((bowler_data[0])[1]))
+    (bowler_data[0])[2] +=" "*(5-len((bowler_data[0])[2]))
+    (bowler_data[0])[3] +=" "*(4-len((bowler_data[0])[3]))
+    (bowler_data[0])[4] +=" "*(4-len((bowler_data[0])[4]))
+    (bowler_data[0])[5] +=" "*(4-len((bowler_data[0])[5]))
 
-            inningHead = 'Bowling'
-            inningHead += " " * (30 - len(inningHead))
-            print("\n" + inningHead + "\t" + "Overs" + "\t" "Maidens" + "\t" + "Runs" + "\t" + "Wickets" + "\t" + "Economy" + "\n")
+    print((bowler_data[0])[0]+"\t"+(bowler_data[0])[1]+"\t"+(bowler_data[0])[2]+"\t"+(bowler_data[0])[3]+"\t"+(bowler_data[0])[4]+"\t"+(bowler_data[0])[5])
 
-            for row in range(len(inningsBowl[ix])):
-                playerName = str(inningsBowl[ix][row][0])
-                if len(playerName)<30:
-                    playerName += " "*(30-len(playerName))
-                overs = str(inningsBowl[ix][row][1])
-                if len(overs)<5:
-                    overs += " "*(5-len(overs))
-                maidens = str(inningsBowl[ix][row][2])
-                if len(maidens)<7:
-                    maidens += " "*(7-len(maidens))
-                runs = str(inningsBowl[ix][row][3])
-                if len(runs)<4:
-                    runs += " "*(4-len(runs))
-                wickets = str(inningsBowl[ix][row][4])
-                if len(wickets)<7:
-                    wickets += " "*(7-len(wickets))
-                economy = str(inningsBowl[ix][row][5])
-                print(playerName + "\t" + overs + "\t" + maidens + "\t" + runs + "\t" + wickets + "\t" + economy)
 
+#Print the values of Bowlers data
+    for j in range(1,3):
+        name = (bowler_data[j])[0].a.string
+        over = (bowler_data[j])[1].string
+        maid = (bowler_data[j])[2].string
+        runs = (bowler_data[j])[3].string
+        wkt = (bowler_data[j])[4].string
+        eco = (bowler_data[j])[5].string
+
+        if len(name)<25:
+            name +=" "*(25-len(name))
+
+        over +=" "*(5-len(over))
+        maid +=" "*(4-len(maid))
+        runs +=" "*(4-len(runs))
+        wkt  +=" "*(4-len(wkt))
+        eco +=" "*(4-len(eco))
+
+        print(name +"\t"+over+"\t"+maid+"\t"+runs+"\t"+wkt+"\t"+eco)
+        
+
+        
 
 
 
@@ -136,7 +116,7 @@ def getScoreCard(url, meta):
 def main(em):
 
         ch = em[0]
-
+        
         if ch > 0:
             global matches
             matches = tableData[ch-1].find_all('section', {'class' : 'default-match-block'})
@@ -155,7 +135,7 @@ def main(em):
             exit()
 
 
-        url2 = "http://www.espncricinfo.com" + matches[ch-1].find_all('div')[4].find_all('a')[0]['href'] + "?view=scorecard"
+        url2 =  matches[ch-1].find_all('div')[4].find_all('a')[0]['href'] + "?view=scorecard"
         matchDetails = matches[ch-1].find_all('div')
         team1 = str(matchDetails[1].text.split('\n',1)[1].split(' ')[0])
         if len(str(matchDetails[1].text.split('\n',1)[1].split(' ')[1]))>0:
@@ -174,5 +154,6 @@ def main(em):
         meta = "\t" + team1 + ": " + score1 + "\n\t" + team2 + ": " + score2
         meta += "\n\n" + matchDetails[3].text.split('\n')[1]
 
-
+        
+        print (meta)
         getScoreCard(url2, meta)
