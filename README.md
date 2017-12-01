@@ -29,13 +29,23 @@ How to use?
 To use, it is recommended to make `virtualenv` and then install all required packages:
 
 * Installing virtualenv:  
-`$ sudo pip install virtualenv`  
+```
+$ sudo pip install virtualenv
+```  
 * Making virtualenv:  
-`$ virtualenv venv`  
+```
+$ virtualenv venv
+```  
 * Go to your CrickFev dir and activate it:   
-`$ . venv/bin/activate`  
+```
+$ . venv/bin/activate
+```  
 * To install all required packages:  
-`$ pip install --editable .`  
+ ```
+ $ pip install --editable .
+ or
+ $ sudo pip install --editable .
+```
 
 **Note** `$` means commands should be entered in **Terminal**  
 
