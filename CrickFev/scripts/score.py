@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-import urllib2
-import cookielib
+import urllib.request, urllib.error, urllib.parse
+import http.cookiejar
 from getpass import getpass
 import sys
 import time
@@ -12,7 +12,7 @@ import click
 
 def run():
 
-		cric=urllib2.urlopen("http://www.cricbuzz.com")
+		cric=urllib.request.urlopen("http://www.cricbuzz.com")
 
 		html=cric.read()
 
@@ -37,8 +37,8 @@ def run():
 		data = 'username=' + username + '&password=' + passwd + '&Submit=Sign+in'
 
 
-		cj = cookielib.CookieJar()
-		opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+		cj = http.cookiejar.CookieJar()
+		opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 
 		opener.addheaders = [('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36')]
 
@@ -64,11 +64,11 @@ def run():
 
 def cli():
 		global username 
-		username = str(input("Enter Username: "))
+		username = str(eval(input("Enter Username: ")))
 		global passwd 
 		passwd  = getpass()
 		global number 
-		number = str(input("Enter Mobile number: "))
+		number = str(eval(input("Enter Mobile number: ")))
 		while True:
 				 run()
 				 time.sleep(2*60)
