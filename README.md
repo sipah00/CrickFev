@@ -50,12 +50,6 @@ $ . venv/bin/activate
  or
  $ sudo pip install --editable .
 ```
-* To install CricFev:  
- ```
- $ git clone https://github.com/sipah00/CrickFev
- $ cd CrickFev
- $ python setup.py install
- ```
  
 **Note** `$` means commands should be entered in **Terminal**  
 
