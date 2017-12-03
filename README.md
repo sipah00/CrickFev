@@ -1,9 +1,13 @@
+[![chat on Slack](https://img.shields.io/badge/chat-Slack-blue.svg)](https://join.slack.com/t/crickkwoc/shared_invite/enQtMjc0NDUyNTU3NzE1LWFmOGI5MDBhMzBmNmJjMTM0ZjhjMTBhNTIzY2VhNTI5N2ZkNjVhYTNkZTUyNGMyNmMwMGE0NjY2OGM1YmY4NDg)
+
+[![made with &hearts in Python](https://img.shields.io/badge/made%20with%20%E2%9D%A4%20in-Python-red.svg)](http://shields.io/#your-badge)
+  
 
 # CrickFev  
 
 > A command line tool to see cricket updates.   
 
-![demo](https://user-images.githubusercontent.com/23627932/33074597-bbee674e-ceec-11e7-9a65-eeb610668d71.gif)  
+![demo](data/commands_demo.gif)  
 
 
 Why?
@@ -46,7 +50,13 @@ $ . venv/bin/activate
  or
  $ sudo pip install --editable .
 ```
-
+* To install CricFev:  
+ ```
+ $ git clone https://github.com/sipah00/CrickFev
+ $ cd CrickFev
+ $ python setup.py install
+ ```
+ 
 **Note** `$` means commands should be entered in **Terminal**  
 
 
