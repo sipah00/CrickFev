@@ -11,7 +11,7 @@ tableData = soup.find_all('section', {'class' : 'matches-day-block'})
 
 
 def getScoreCard(url,meta):
-    print("\n" + "*"*100)
+    print(("\n" + "*"*100))
     
     r1 = requests.get(url)
     soup = BS(r1.text,'html.parser')
@@ -37,7 +37,7 @@ def getScoreCard(url,meta):
     (batsman_data[0])[4] +=" "*(4-len((batsman_data[0])[4]))
     (batsman_data[0])[5] +=" "*(4-len((batsman_data[0])[5]))
 
-    print((batsman_data[0])[0]+"\t"+(batsman_data[0])[1]+"\t"+(batsman_data[0])[2]+"\t"+(batsman_data[0])[3]+"\t"+(batsman_data[0])[4]+"\t"+(batsman_data[0])[5])
+    print(((batsman_data[0])[0]+"\t"+(batsman_data[0])[1]+"\t"+(batsman_data[0])[2]+"\t"+(batsman_data[0])[3]+"\t"+(batsman_data[0])[4]+"\t"+(batsman_data[0])[5]))
 
 #Print the Values of the Batsmen Playing
     for j in range(1,3):
@@ -62,9 +62,9 @@ def getScoreCard(url,meta):
         if len(sr)<4:
             sr +=" "*(4-len(sr))
 
-        print(playerName + "\t"+playerScore+"\t"+ballsFaced+"\t"+fours+"\t"+six+"\t"+sr)
+        print((playerName + "\t"+playerScore+"\t"+ballsFaced+"\t"+fours+"\t"+six+"\t"+sr))
 
-    print("\n"+"*"*70)
+    print(("\n"+"*"*70))
 
     if len((bowler_data[0])[0])<25:
     		(bowler_data[0])[0] +=" "*(25-len((bowler_data[0])[0]))
@@ -74,7 +74,7 @@ def getScoreCard(url,meta):
     (bowler_data[0])[4] +=" "*(4-len((bowler_data[0])[4]))
     (bowler_data[0])[5] +=" "*(4-len((bowler_data[0])[5]))
 
-    print((bowler_data[0])[0]+"\t"+(bowler_data[0])[1]+"\t"+(bowler_data[0])[2]+"\t"+(bowler_data[0])[3]+"\t"+(bowler_data[0])[4]+"\t"+(bowler_data[0])[5])
+    print(((bowler_data[0])[0]+"\t"+(bowler_data[0])[1]+"\t"+(bowler_data[0])[2]+"\t"+(bowler_data[0])[3]+"\t"+(bowler_data[0])[4]+"\t"+(bowler_data[0])[5]))
 
 #Print the values of Bowlers data
     for j in range(1,3):
@@ -94,7 +94,7 @@ def getScoreCard(url,meta):
         wkt  +=" "*(4-len(wkt))
         eco +=" "*(4-len(eco))
 
-        print(name +"\t"+over+"\t"+maid+"\t"+runs+"\t"+wkt+"\t"+eco)
+        print((name +"\t"+over+"\t"+maid+"\t"+runs+"\t"+wkt+"\t"+eco))
        
 @click.command()
 @click.option('--em', nargs=2, type=int, help='first arg for event number and second for match')
