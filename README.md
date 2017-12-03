@@ -7,7 +7,7 @@
 
 > A command line tool to see cricket updates.   
 
-![demo](assests/commands_demo.gif)  
+![demo](data/commands_demo.gif)  
 
 
 Why?
