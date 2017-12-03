@@ -10,7 +10,6 @@ setup(
     include_package_data = True,
     install_requires=[
         'Click',
-        'BeautifulSoup',
         'requests',
         'urllib3',
         'bs4',

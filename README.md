@@ -1,9 +1,13 @@
+[![chat on Slack](https://img.shields.io/badge/chat-Slack-blue.svg)](https://join.slack.com/t/crickkwoc/shared_invite/enQtMjc0NDUyNTU3NzE1LWFmOGI5MDBhMzBmNmJjMTM0ZjhjMTBhNTIzY2VhNTI5N2ZkNjVhYTNkZTUyNGMyNmMwMGE0NjY2OGM1YmY4NDg)
+
+[![made with &hearts in Python](https://img.shields.io/badge/made%20with%20%E2%9D%A4%20in-Python-red.svg)](http://shields.io/#your-badge)
+  
 
 # CrickFev  
 
 > A command line tool to see cricket updates.   
 
-![demo](https://user-images.githubusercontent.com/23627932/33074597-bbee674e-ceec-11e7-9a65-eeb610668d71.gif)  
+![demo](data/commands_demo.gif)  
 
 
 Why?
@@ -29,14 +33,30 @@ How to use?
 To use, it is recommended to make `virtualenv` and then install all required packages:
 
 * Installing virtualenv:  
-`$ sudo pip install virtualenv`  
+```
+$ sudo pip install virtualenv
+```  
 * Making virtualenv:  
-`$ virtualenv venv`  
+```
+$ virtualenv venv
+```  
 * Go to your CrickFev dir and activate it:   
-`$ . venv/bin/activate`  
+```
+$ . venv/bin/activate
+```  
 * To install all required packages:  
-`$ pip install --editable .`  
-
+ ```
+ $ pip install --editable .
+ or
+ $ sudo pip install --editable .
+```
+* To install CricFev:  
+ ```
+ $ git clone https://github.com/sipah00/CrickFev
+ $ cd CrickFev
+ $ python setup.py install
+ ```
+ 
 **Note** `$` means commands should be entered in **Terminal**  
 
 
