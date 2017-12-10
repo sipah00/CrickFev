@@ -1,0 +1,4 @@
+Click
+requests
+urllib3
+bs4

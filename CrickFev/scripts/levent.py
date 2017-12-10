@@ -16,6 +16,7 @@ def getLiveEvents():
     click.secho("Events Going On Live Right Now", bold=True, fg='green')
     for ix in range(0, len(tableHeads)):
         click.secho("\t" + str(ix+1) + "| " + str(tableHeads[ix].h2.text), fg='cyan')
+        
 
 @click.command(help='Events Going On Live Right Now--(cricket)')
 

@@ -1,0 +1,15 @@
+README.md
+CrickFev/__init__.py
+CrickFev/main.py
+CrickFev/utils.py
+CrickFev.egg-info/PKG-INFO
+CrickFev.egg-info/SOURCES.txt
+CrickFev.egg-info/dependency_links.txt
+CrickFev.egg-info/entry_points.txt
+CrickFev.egg-info/requires.txt
+CrickFev.egg-info/top_level.txt
+CrickFev/scripts/__init__.py
+CrickFev/scripts/levent.py
+CrickFev/scripts/lscore.py
+CrickFev/scripts/lscorecard.py
+CrickFev/scripts/score.py
