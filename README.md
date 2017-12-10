@@ -31,7 +31,10 @@ How to use?
 -----------
 
 To use, it is recommended to make `virtualenv` and then install all required packages:
-
+* Clone the repo
+```
+git clone https://github.com/sipah00/CrickFev
+```
 * Installing virtualenv:  
 ```
 $ sudo pip install virtualenv
@@ -40,9 +43,13 @@ $ sudo pip install virtualenv
 ```
 $ virtualenv venv
 ```  
-* Go to your CrickFev dir and activate it:   
+* Activate your virtualenv:   
 ```
 $ . venv/bin/activate
+```
+* Change directory to your project folder:
+```
+$ cd CrickFev
 ```  
 * To install all required packages:  
  ```
