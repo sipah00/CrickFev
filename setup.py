@@ -13,6 +13,7 @@ setup(
         'requests',
         'urllib3',
         'bs4',
+        'colorama'
     ],
     entry_points='''
         [console_scripts]
